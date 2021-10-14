@@ -10,6 +10,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +31,8 @@ public class Socks {
     @Column(name = "id", insertable = false, updatable = false, nullable = false)
     private long id;
     @NonNull
-    @Column(name = "color", nullable = false)
-    private String color;
+    @Enumerated(EnumType.STRING)
+    private ColorSocks color;
     @NonNull
     private Integer cottonPart;
     @NonNull

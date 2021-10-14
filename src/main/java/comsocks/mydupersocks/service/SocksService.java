@@ -1,6 +1,7 @@
 package comsocks.mydupersocks.service;
 
 
+import comsocks.mydupersocks.entity.ColorSocks;
 import comsocks.mydupersocks.entity.Socks;
 import comsocks.mydupersocks.exceptions.QuantitySocksError;
 import comsocks.mydupersocks.repository.SocksRepository;
@@ -23,7 +24,7 @@ public class SocksService {
     }
 
 
-    public void addSocks(String color, Integer cottonPart, Integer quantity) {
+    public void addSocks(ColorSocks color, Integer cottonPart, Integer quantity) {
         if (socksRepository.findSocksByColorAndCottonPart(color, cottonPart) != null) {
             Socks socksFormDB = socksRepository.findSocksByColorAndCottonPart(color, cottonPart);
             socksFormDB.setQuantity(socksFormDB.getQuantity() + quantity);
@@ -34,7 +35,7 @@ public class SocksService {
         }
     }
 
-    public void deleteSocks(String color, Integer cottonPart, Integer quantity) {
+    public void deleteSocks(ColorSocks color, Integer cottonPart, Integer quantity) {
         if (socksRepository.findSocksByColorAndCottonPart(color, cottonPart) != null && quantity > 0) {
             Socks socksFormDB = socksRepository.findSocksByColorAndCottonPart(color, cottonPart);
             if (socksFormDB.getQuantity() >= quantity) {
@@ -52,7 +53,7 @@ public class SocksService {
         return socksRepository.findAll();
     }
 
-    public Integer getCountSocksType(String color, String operation, Integer cottonPart) {
+    public Integer getCountSocksType(ColorSocks color, String operation, Integer cottonPart) {
         List<Socks> listSocks = socksRepository.findSocksByColor(color);
         int count = 0;
         for (int i = 0; i < listSocks.size(); i++) {
